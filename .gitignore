@@ -1,0 +1,15 @@
+ai1wm-backups
+languages
+plugins
+upgrade
+uploads
+._index.php
+._plugins
+._themes
+index.php
+themes/fictional-university-theme/node_modules
+themes/fictional-university-theme/images
+themes/fictional-university-theme/build
+themes/fictional-university-theme/package-lock.json
+themes/fictional-university-theme/screenshot.png
+themes/fictional-university-theme/._index.php
