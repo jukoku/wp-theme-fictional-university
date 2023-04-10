@@ -77,14 +77,14 @@ class Search {
   openOverlay() {
     this.searchOverlay.addClass("search-overlay--active")
     $("body").addClass("body-no-scroll")
-    console.log("our open method just ran!")
+    console.log("방금 오픈 실행했다!")
     this.isOverlayOpen = true
   }
 
   closeOverlay() {
     this.searchOverlay.removeClass("search-overlay--active")
     $("body").removeClass("body-no-scroll")
-    console.log("our close method just ran!")
+    console.log("방금 닫기 실행했다! 그런가?")
     this.isOverlayOpen = false
   }
 }
