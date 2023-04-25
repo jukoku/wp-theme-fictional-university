@@ -3,6 +3,7 @@ import $ from 'jquery'
 class Search {
   // 1. describe and create/initiate our object
   constructor() {
+    this.addSearchHTML()
     this.resultsDiv = $("#search-overlay__results")
     this.openButton = $(".js-search-trigger")
     this.closeButton = $(".search-overlay__close")
@@ -52,14 +53,17 @@ class Search {
   }
 
   getResults() {
-    $.getJSON('/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
-      var testArray = ['red', 'orage', 'yellow'];
-      this.resultsDiv.html(`
+    $.getJSON(universityData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts => {
+      $.getJSON(universityData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val(), pages => {
+        var combineResults = posts.concat(pages)
+        this.resultsDiv.html(`
       <h2 class="search-overlay__section-title">General Information</h2>
-      ${posts.length ? `<ul class="link-list min-list">` : '<p>No general information matches that search.</p>'}
-        ${posts.map(post => `<li><a href="${post.link}">${post.title.rendered}</a></li>`).join('')}
-      ${posts.length ? '</ul>' : ''}
+      ${combineResults.length ? `<ul class="link-list min-list">` : '<p>No general information matches that search.</p>'}
+        ${combineResults.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+      ${combineResults.length ? '</ul>' : ''}
       `)
+        this.isSpinnerVisible = false
+      })
     })
   }
 
@@ -77,7 +81,10 @@ class Search {
   openOverlay() {
     this.searchOverlay.addClass("search-overlay--active")
     $("body").addClass("body-no-scroll")
-    console.log("방금 오픈 실행했다!")
+    // 검색창의 값을 지운 뒤 검색 키워드를 바로 입력할 수 있도록 커서를 위치시킴 
+    this.searchField.val('')
+    setTimeout(() => { this.searchField.focus() }, 301)
+    console.log("방금 검색 오픈 실행했다!")
     this.isOverlayOpen = true
   }
 
@@ -87,6 +94,26 @@ class Search {
     console.log("방금 닫기 실행했다! 그런가?")
     this.isOverlayOpen = false
   }
+
+  addSearchHTML() {
+    $("body").append(`
+    <div class="search-overlay">
+    <div class="search-overlay__top">
+      <div class="container">
+        <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+        <input type="text" class="search-term" placeholder="What are you looking for?" autocomplete="off" id="search-term">
+        <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+      </div>
+    </div>               
+    <div class="container">
+      <div id="search-overlay__results">
+        
+      </div>
+    </div>
+  </div>
+    `)
+  }
+
 }
 
 export default Search
