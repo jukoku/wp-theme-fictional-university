@@ -16,11 +16,7 @@
       <p><a class="metabox__blog-home-link" href="<?php echo get_permalink($theParent); ?>"><i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title($theParent); ?></a> <span class="metabox__main"><?php the_title(); ?></span></p>
     </div>
       <?php }
-    ?>
-
-    
-    
-    <?php 
+  
     $testArray = get_pages(array(
       'child_of' => get_the_ID()
     ));
@@ -48,14 +44,8 @@
     
 
     <div class="generic-content">
-          <form class="search-form" method="get" action="<?php echo esc_url(site_url('/')); ?>">
-            <label class="headline headline--medium" for="s">Perform a New Search:</label>
-            <div class="search-form-row">
-              <input placeholder="What are you looking for?" class="s" id="s" type="search" name="s">            
-              <input class="search-submit" type="submit" value="search">
-            </div>
-          </form>
-  </div>
+      <?php get_search_form(); ?>
+    </div>
 
   </div>
     
