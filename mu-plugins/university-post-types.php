@@ -80,5 +80,3 @@ register_post_type('campus', array(
 }
 
 add_action('init', 'university_post_types');
-
-?>
