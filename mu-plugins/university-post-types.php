@@ -4,6 +4,8 @@ function university_post_types() {
   
 //Campus Post Type
 register_post_type('campus', array(
+  'capability_type' => 'campus',
+  'map_meta_cap' => true,
   'supports' => array('title', 'editor', 'excerpt'),
   'rewrite' => array('slug' => 'campuses'),
   'has_archive' => true,
@@ -22,6 +24,8 @@ register_post_type('campus', array(
 
   //Event Post Type
   register_post_type('event', array(
+    'capability_type' => 'event',
+    'map_meta_cap' => true,
     'supports' => array('title', 'editor', 'excerpt'),
     'rewrite' => array('slug' => 'events'),
     'has_archive' => true,
@@ -39,6 +43,8 @@ register_post_type('campus', array(
 
   // Program Post Type
   register_post_type('program', array(
+    'capability_type' => 'program',
+    'map_meta_cap' => true,
     'supports' => array('title'),
     'rewrite' => array('slug' => 'programs'),
     'has_archive' => true,
@@ -56,6 +62,8 @@ register_post_type('campus', array(
 
    // Professor Post Type
    register_post_type('professor', array(
+    'capability_type' => 'professor',
+    'map_meta_cap' => true,
     'show_in_rest' => true,
     'supports' => array('title', 'editor', 'thumbnail'),    
     'public' => true,
