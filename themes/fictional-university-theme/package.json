@@ -16,7 +16,8 @@
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
     "axios": "^0.21.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "wp-scripts": "^0.0.1-security"
   },
   "devDependencies": {
     "@wordpress/scripts": "^26.1.0"
