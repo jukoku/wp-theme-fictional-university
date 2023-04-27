@@ -11,7 +11,7 @@ class MyNotes {
 
   // Methods will go here
   deleteNote() {
-    alert("you Clicked delete MOM")
+    alert("you Clicked delete 이하하 ㅋㅋㅋ")
   }
 }
 
