@@ -21,3 +21,15 @@ wordpress, db, https://www.npmjs.com/package/@wordpress/scripts 설치 및 실�
 
 node 실행중인 컨테이너 진입
 > docker exec -it theme_js /bin/bash
+
+## 에러메시지 대처방법
+
+**Ports are not available: listen tcp 0.0.0.0/3000: bind: An attempt was made to access a socket in a way forbidden by its access permissions**
+
+# 관리자모드로 파워셀 실행 후
+
+> net stop winnat
+
+> docker compose up -d  <!-- WSL에서 실행 -->
+
+> net start winnat

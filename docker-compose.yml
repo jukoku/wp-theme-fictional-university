@@ -1,12 +1,14 @@
 version: '2' # 파일 규격 버전
-services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의 ( 컴포즈에서 컨테이너 : 서비스 )
-  db: # 서비스 명
+services:
+  # 이 항목 밑에 실행하려는 컨테이너 들을 정의 ( 컴포즈에서 컨테이너 : 서비스 )
+  db:
+    # 서비스 명
     image: mysql:5.7 # 사용할 이미지
     platform: linux/amd64 # mac m1용 이미지
     container_name: db # 컨테이너 이름 설정
     volumes:
       - ./mysql:/var/lib/mysql
-    restart: always 
+    restart: always
     ports:
       - "3306:3306" # 접근 포트  설정 (컨테이너 외부:컨테이너 내부)
     environment:
@@ -19,7 +21,7 @@ services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의 ( 컴�
     container_name: wordpress
     platform: linux/amd64 # mac m1용 이미지
     volumes:
-      - ./wp:/var/www/html 
+      - ./wp:/var/www/html
     ports:
       - "8080:80"
     restart: always
@@ -39,4 +41,5 @@ services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의 ( 컴�
       - ./wp/wp-content/themes/fictional-university-theme/:/themeNode
     environment:
       PORT: 3000
-    tty: true
+    stdin_open: true # interactive라는 뜻으로 명령어를 입력받을 수 있게 세션을 열어둔다는 뜻
+    tty: true # tty(pseudo-TTY) 터미널과 비슷한 환경을 제공한다는 뜻
